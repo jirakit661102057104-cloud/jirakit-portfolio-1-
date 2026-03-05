@@ -1,20 +1,40 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Jirakit Portfolio | IT PCRU
 
-# Run and deploy your AI Studio app
+A professional portfolio website built with React, Tailwind CSS, and Express.
 
-This contains everything you need to run your app locally.
+## 🚀 Live Demo
+Check out the live site here: [www.jirakit.site](https://www.jirakit.site)
 
-View your app in AI Studio: https://ai.studio/apps/8248fe28-9810-4aca-ab98-ca08e90ed192
+## ✨ Features
+- **Dynamic Navigation**: Smooth transitions between Home, Works, Certificates, and Activities.
+- **GitHub Integration**: Direct links to GitHub profile and projects.
+- **Responsive Design**: Optimized for mobile, tablet, and desktop.
+- **Modern Aesthetic**: Dark theme with orange accents, following a technical/professional vibe.
+- **Full-Stack**: Express backend for handling API routes and OAuth (ready for expansion).
 
-## Run Locally
+## 🛠️ Tech Stack
+- **Frontend**: React 19, Vite, Tailwind CSS, Motion (Framer Motion), Lucide Icons.
+- **Backend**: Node.js, Express.
+- **Deployment**: Vercel.
 
-**Prerequisites:**  Node.js
+## 📦 Installation & Local Development
 
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/jirakit661102057104-cloud
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Create a `.env` file based on `.env.example` and add your credentials.
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## 📄 License
+This project is licensed under the Apache-2.0 License.
+
+---
+Designed and developed by **Jirakit** (IT PCRU Student).
