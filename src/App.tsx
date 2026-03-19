@@ -6,6 +6,8 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
+  GraduationCap,
+  Award,
   Terminal, 
   School, 
   ChevronRight, 
@@ -31,7 +33,9 @@ import {
   X,
   Search,
   ArrowRight,
-  Languages
+  ArrowLeft,
+  Languages,
+  Lock
 } from 'lucide-react';
 import { PROJECTS, CERTIFICATES, ACTIVITIES, Project, Certificate, Activity } from './constants';
 import { translations } from './translations';
@@ -44,6 +48,7 @@ export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedProjectCategory, setSelectedProjectCategory] = useState<string>('All');
   const [selectedCertCategory, setSelectedCertCategory] = useState<string>('All');
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [githubUser, setGithubUser] = useState<any>(null);
   const [lang, setLang] = useState<Language>('en');
 
@@ -57,7 +62,6 @@ export default function App() {
         return;
       }
       if (event.data?.type === 'OAUTH_AUTH_SUCCESS') {
-        setGithubUser(event.data.user);
         console.log('GitHub Connected:', event.data.user);
       }
     };
@@ -94,7 +98,10 @@ export default function App() {
 
   const Navbar = () => (
     <header className="flex items-center justify-between whitespace-nowrap border-b border-solid border-primary/20 px-6 md:px-20 py-4 sticky top-0 bg-bg-light/80 dark:bg-bg-dark/80 backdrop-blur-md z-50">
-      <div className="flex items-center gap-3 text-primary cursor-pointer" onClick={() => setCurrentScreen('home')}>
+      <div className="flex items-center gap-3 text-primary cursor-pointer" onClick={() => {
+        setCurrentScreen('home');
+        setSelectedProject(null);
+      }}>
         <div className="size-8 flex items-center justify-center bg-primary text-bg-dark rounded-lg">
           <Terminal size={20} />
         </div>
@@ -115,7 +122,10 @@ export default function App() {
           ].map((item) => (
             <button
               key={item.id}
-              onClick={() => setCurrentScreen(item.id as Screen)}
+              onClick={() => {
+                setCurrentScreen(item.id as Screen);
+                setSelectedProject(null);
+              }}
               className={`text-sm font-medium transition-colors hover:text-primary ${
                 currentScreen === item.id ? 'text-primary border-b-2 border-primary' : 'text-slate-600 dark:text-slate-400'
               }`}
@@ -143,21 +153,6 @@ export default function App() {
         <button className="flex min-w-[120px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-primary text-bg-dark text-sm font-bold transition-transform hover:scale-105 active:scale-95">
           <span>{t.nav.downloadCv}</span>
         </button>
-        <div className="bg-primary/20 rounded-full p-0.5 border border-primary/30 group relative cursor-pointer">
-          <img 
-            alt="User Profile" 
-            className="rounded-full size-9 object-cover" 
-            src="https://api.dicebear.com/7.x/avataaars/svg?seed=Jirakit&backgroundColor=ff6321" 
-            referrerPolicy="no-referrer"
-          />
-          {githubUser && (
-            <div className="absolute top-full right-0 mt-2 w-48 bg-bg-dark border border-primary/20 p-3 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
-              <p className="text-xs font-bold text-primary mb-1">Connected as</p>
-              <p className="text-sm font-bold truncate">{githubUser.name || githubUser.login}</p>
-              <p className="text-[10px] text-slate-400 truncate">@{githubUser.login}</p>
-            </div>
-          )}
-        </div>
       </div>
 
       <button className="md:hidden text-slate-900 dark:text-slate-100" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -179,6 +174,7 @@ export default function App() {
                 onClick={() => {
                   setCurrentScreen(id as Screen);
                   setIsMenuOpen(false);
+                  setSelectedProject(null);
                 }}
                 className={`text-left text-lg font-bold capitalize ${currentScreen === id ? 'text-primary' : ''}`}
               >
@@ -189,14 +185,6 @@ export default function App() {
               <button className="bg-primary text-bg-dark font-bold py-3 px-6 rounded-lg flex-1 mr-4">
                 {t.nav.downloadCv}
               </button>
-              <div className="size-12 rounded-full border border-primary/20 p-0.5 bg-primary/5">
-                <img 
-                  alt="User Profile" 
-                  className="rounded-full w-full h-full object-cover" 
-                  src="https://api.dicebear.com/7.x/avataaars/svg?seed=Jirakit&backgroundColor=ff6321" 
-                  referrerPolicy="no-referrer"
-                />
-              </div>
               <button 
                 onClick={() => {
                   setLang(lang === 'en' ? 'th' : 'en');
@@ -231,7 +219,7 @@ export default function App() {
         <div className="flex gap-8 text-sm text-slate-500 dark:text-slate-400">
           <a className="hover:text-primary transition-colors flex items-center gap-1" href="https://instagram.com/ppperth.ixz" target="_blank" rel="noopener noreferrer"><Instagram size={16} /> Instagram</a>
           <a className="hover:text-primary transition-colors flex items-center gap-1" href="https://github.com/jirakit661102057104-cloud" target="_blank" rel="noopener noreferrer"><Github size={16} /> GitHub</a>
-          <a className="hover:text-primary transition-colors flex items-center gap-1" href="mailto:jirakit661102057104@gmail.com" target="_blank" rel="noopener noreferrer"><Mail size={16} /> Gmail</a>
+          <a className="hover:text-primary transition-colors flex items-center gap-1" href="https://mail.google.com/mail/?view=cm&fs=1&to=jirakit661102057104@gmail.com" target="_blank" rel="noopener noreferrer"><Mail size={16} /> Gmail</a>
         </div>
         <p className="text-xs text-slate-500 dark:text-slate-400 italic">
           {t.footer.designed} © 2024
@@ -260,7 +248,10 @@ export default function App() {
           </p>
           <div className="flex flex-wrap gap-4">
             <button 
-              onClick={() => setCurrentScreen('works')}
+              onClick={() => {
+                setCurrentScreen('works');
+                setSelectedProject(null);
+              }}
               className="bg-primary text-bg-dark font-bold px-8 py-4 rounded-lg hover:scale-105 transition-transform shadow-lg shadow-primary/20"
             >
               {t.hero.viewWorks}
@@ -300,9 +291,9 @@ export default function App() {
       {/* Stats Section */}
       <section className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {[
-          { label: t.stats.projects, value: '15+', icon: <Code className="text-primary" /> },
-          { label: t.stats.certificates, value: '10+', icon: <Verified className="text-primary" /> },
-          { label: t.stats.activities, value: '20+', icon: <Trophy className="text-primary" /> },
+          { label: t.stats.projects, value: '-', icon: <Code className="text-primary" /> },
+          { label: t.stats.certificates, value: '-', icon: <Verified className="text-primary" /> },
+          { label: t.stats.activities, value: '-', icon: <Trophy className="text-primary" /> },
         ].map((stat, i) => (
           <div key={i} className="bg-white dark:bg-bg-dark/40 border border-slate-200 dark:border-primary/10 p-8 rounded-2xl hover:border-primary transition-colors group">
             <div className="size-12 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
@@ -319,7 +310,10 @@ export default function App() {
         <div className="flex items-center justify-between">
           <h2 className="text-4xl font-black tracking-tight">{t.featured.title} <span className="text-primary">{t.featured.titleSuffix}</span></h2>
           <button 
-            onClick={() => setCurrentScreen('works')}
+            onClick={() => {
+              setCurrentScreen('works');
+              setSelectedProject(null);
+            }}
             className="text-primary font-bold flex items-center gap-2 hover:gap-4 transition-all"
           >
             {t.featured.viewAll} <ArrowRight size={20} />
@@ -327,7 +321,14 @@ export default function App() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {PROJECTS.slice(0, 3).map((project) => (
-            <div key={project.id} className="group bg-white dark:bg-bg-dark/40 border border-slate-200 dark:border-primary/10 rounded-2xl overflow-hidden hover:border-primary transition-all">
+            <div 
+              key={project.id} 
+              onClick={() => {
+                setSelectedProject(project);
+                setCurrentScreen('works');
+              }}
+              className="group bg-white dark:bg-bg-dark/40 border border-slate-200 dark:border-primary/10 rounded-2xl overflow-hidden hover:border-primary transition-all cursor-pointer"
+            >
               <div className="aspect-video overflow-hidden">
                 <img 
                   src={project.image} 
@@ -344,10 +345,21 @@ export default function App() {
                   </div>
                 </div>
                 <p className="text-sm text-slate-600 dark:text-slate-400 line-clamp-2">{lang === 'th' ? project.descriptionTh || project.description : project.description}</p>
-                <div className="flex gap-2">
-                  {project.tags.map(tag => (
-                    <span key={tag} className="text-[10px] font-bold bg-primary/10 text-primary px-2 py-1 rounded uppercase">{tag}</span>
-                  ))}
+                <div className="flex flex-wrap gap-2 items-center justify-between">
+                  <div className="flex gap-2">
+                    {project.tags.map(tag => (
+                      <span key={tag} className="text-[10px] font-bold bg-primary/10 text-primary px-2 py-1 rounded uppercase">{tag}</span>
+                    ))}
+                  </div>
+                  {project.status && (
+                    <span className={`text-[8px] font-black px-2 py-0.5 rounded-full uppercase tracking-tighter ${
+                      project.status === 'Completed' ? 'bg-emerald-500/10 text-emerald-500' :
+                      project.status === 'In Progress' ? 'bg-amber-500/10 text-amber-500' :
+                      'bg-blue-500/10 text-blue-500'
+                    }`}>
+                      {lang === 'th' ? project.statusTh || project.status : project.status}
+                    </span>
+                  )}
                 </div>
               </div>
             </div>
@@ -361,9 +373,14 @@ export default function App() {
           <h2 className="text-bg-dark text-5xl font-black leading-tight">{t.cta.title}</h2>
           <p className="text-bg-dark/80 text-xl font-medium">{t.cta.description}</p>
         </div>
-        <button className="bg-bg-dark text-primary font-bold px-10 py-5 rounded-2xl text-lg hover:scale-105 transition-transform shadow-2xl">
+        <a 
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=jirakit661102057104@gmail.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-bg-dark text-primary font-bold px-10 py-5 rounded-2xl text-lg hover:scale-105 transition-transform shadow-2xl flex items-center justify-center"
+        >
           {t.cta.button}
-        </button>
+        </a>
       </section>
     </motion.div>
   );
@@ -375,10 +392,87 @@ export default function App() {
       { id: 'UI Design', label: t.works.categories.ui },
       { id: 'IoT', label: t.works.categories.iot },
       { id: 'Mobile Apps', label: t.works.categories.mobile },
+      { id: 'Web Server', label: t.works.categories.server },
+      { id: 'Game Dev', label: t.works.categories.game },
     ];
     const filteredProjects = selectedProjectCategory === 'All' 
       ? PROJECTS 
       : PROJECTS.filter(p => p.category === selectedProjectCategory);
+
+    if (selectedProject) {
+      return (
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-12">
+          <button 
+            onClick={() => setSelectedProject(null)}
+            className="flex items-center gap-2 text-primary font-bold hover:underline"
+          >
+            <ArrowLeft size={20} /> {t.works.back}
+          </button>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div className="space-y-8">
+              <div className="space-y-4">
+                <div className="flex gap-2">
+                  {selectedProject.tags.map(tag => (
+                    <span key={tag} className="text-xs font-bold bg-primary/10 text-primary px-3 py-1 rounded-full uppercase tracking-wider">{tag}</span>
+                  ))}
+                </div>
+                <h1 className="text-5xl font-black">{lang === 'th' ? selectedProject.titleTh || selectedProject.title : selectedProject.title}</h1>
+                
+                {selectedProject.status && (
+                  <div className="flex items-center gap-2 text-sm font-bold">
+                    <span className="text-slate-500 uppercase tracking-widest">{t.works.statusLabel}:</span>
+                    <span className={`px-3 py-1 rounded-full text-xs ${
+                      selectedProject.status === 'Completed' ? 'bg-emerald-500/10 text-emerald-500' :
+                      selectedProject.status === 'In Progress' ? 'bg-amber-500/10 text-amber-500' :
+                      'bg-blue-500/10 text-blue-500'
+                    }`}>
+                      {lang === 'th' ? selectedProject.statusTh || selectedProject.status : selectedProject.status}
+                    </span>
+                  </div>
+                )}
+
+                <p className="text-slate-600 dark:text-slate-400 text-xl leading-relaxed">
+                  {lang === 'th' ? selectedProject.descriptionTh || selectedProject.description : selectedProject.description}
+                </p>
+              </div>
+
+              {selectedProject.status === 'Completed' ? (
+                selectedProject.downloadUrl && (
+                  <a 
+                    href={selectedProject.downloadUrl} 
+                    className="inline-flex items-center gap-3 bg-primary text-bg-dark font-black px-8 py-4 rounded-2xl text-lg hover:scale-105 transition-transform shadow-xl"
+                  >
+                    <Download size={24} /> {t.works.download}
+                  </a>
+                )
+              ) : (
+                <div className="inline-flex items-center gap-3 bg-slate-200 dark:bg-slate-800 text-slate-500 font-black px-8 py-4 rounded-2xl text-lg cursor-not-allowed opacity-60">
+                  <Lock size={24} /> {lang === 'th' ? 'ยังไม่พร้อมใช้งาน' : 'Not Ready'}
+                </div>
+              )}
+            </div>
+
+            <div className="rounded-3xl overflow-hidden shadow-2xl border border-primary/10">
+              <img src={selectedProject.image} alt={selectedProject.title} className="w-full h-auto" referrerPolicy="no-referrer" />
+            </div>
+          </div>
+
+          {selectedProject.additionalImages && selectedProject.additionalImages.length > 0 && (
+            <div className="space-y-8">
+              <h2 className="text-3xl font-bold">{t.works.gallery}</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {selectedProject.additionalImages.map((img, i) => (
+                  <div key={i} className="rounded-2xl overflow-hidden border border-slate-200 dark:border-primary/10 shadow-lg">
+                    <img src={img} alt={`${selectedProject.title} gallery ${i}`} className="w-full h-auto hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </motion.div>
+      );
+    }
 
     return (
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-12">
@@ -411,20 +505,32 @@ export default function App() {
             <motion.div 
               layout
               key={project.id} 
-              className="group bg-white dark:bg-bg-dark/40 border border-slate-200 dark:border-primary/10 rounded-2xl overflow-hidden hover:border-primary transition-all"
+              onClick={() => setSelectedProject(project)}
+              className="group bg-white dark:bg-bg-dark/40 border border-slate-200 dark:border-primary/10 rounded-2xl overflow-hidden hover:border-primary transition-all cursor-pointer"
             >
               <div className="aspect-video overflow-hidden">
                 <img src={project.image} alt={lang === 'th' ? project.titleTh || project.title : project.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" referrerPolicy="no-referrer" />
               </div>
               <div className="p-8 space-y-6">
-                <div className="flex gap-2">
-                  {project.tags.map(tag => (
-                    <span key={tag} className="text-[10px] font-bold bg-primary/10 text-primary px-2 py-1 rounded uppercase tracking-wider">{tag}</span>
-                  ))}
+                <div className="flex justify-between items-start">
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map(tag => (
+                      <span key={tag} className="text-[10px] font-bold bg-primary/10 text-primary px-2 py-1 rounded uppercase tracking-wider">{tag}</span>
+                    ))}
+                  </div>
+                  {project.status && (
+                    <span className={`text-[9px] font-black px-2 py-0.5 rounded-full uppercase tracking-tighter ${
+                      project.status === 'Completed' ? 'bg-emerald-500/10 text-emerald-500' :
+                      project.status === 'In Progress' ? 'bg-amber-500/10 text-amber-500' :
+                      'bg-blue-500/10 text-blue-500'
+                    }`}>
+                      {lang === 'th' ? project.statusTh || project.status : project.status}
+                    </span>
+                  )}
                 </div>
                 <div className="space-y-2">
                   <h3 className="text-2xl font-bold">{lang === 'th' ? project.titleTh || project.title : project.title}</h3>
-                  <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">{lang === 'th' ? project.descriptionTh || project.description : project.description}</p>
+                  <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed line-clamp-2">{lang === 'th' ? project.descriptionTh || project.description : project.description}</p>
                 </div>
                 <button className="w-full bg-primary text-bg-dark font-bold py-4 rounded-xl flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
                   {t.featured.viewDetails} <ArrowRight size={18} />
@@ -440,14 +546,13 @@ export default function App() {
   const CertificatesScreen = () => {
     const categories = [
       { id: 'All', label: t.certs.categories.all },
-      { id: 'Web Development', label: t.certs.categories.web },
-      { id: 'Networking', label: t.certs.categories.net },
-      { id: 'Cyber Security', label: t.certs.categories.cyber },
-      { id: 'Soft Skills', label: t.certs.categories.soft },
+      { id: 'Academic', label: t.certs.categories.academic },
+      { id: 'Student Activities', label: t.certs.categories.student },
+      { id: 'Training', label: t.certs.categories.training },
     ];
     const filteredCerts = selectedCertCategory === 'All' 
       ? CERTIFICATES 
-      : CERTIFICATES.filter(c => c.category.includes(selectedCertCategory) || selectedCertCategory === 'All');
+      : CERTIFICATES.filter(c => c.category === selectedCertCategory);
 
     return (
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-12">
@@ -466,7 +571,7 @@ export default function App() {
           <div className="flex items-center gap-4 bg-primary/10 p-6 rounded-2xl border border-primary/20">
             <Verified size={40} className="text-primary" />
             <div>
-              <p className="text-primary font-black text-3xl leading-none">24</p>
+              <p className="text-primary font-black text-3xl leading-none">{CERTIFICATES.length}</p>
               <p className="text-slate-500 dark:text-slate-400 text-xs uppercase tracking-widest font-bold mt-1">{t.certs.totalVerified}</p>
             </div>
           </div>
@@ -484,10 +589,9 @@ export default function App() {
               }`}
             >
               {cat.label}
-              {cat.id === 'Web Development' && <Code size={14} />}
-              {cat.id === 'Networking' && <Network size={14} />}
-              {cat.id === 'Cyber Security' && <Shield size={14} />}
-              {cat.id === 'Soft Skills' && <User size={14} />}
+              {cat.id === 'Academic' && <GraduationCap size={14} />}
+              {cat.id === 'Student Activities' && <Users size={14} />}
+              {cat.id === 'Training' && <Award size={14} />}
             </button>
           ))}
         </div>
@@ -672,7 +776,10 @@ export default function App() {
             {t.activities.hireMe}
           </button>
           <button 
-            onClick={() => setCurrentScreen('works')}
+            onClick={() => {
+              setCurrentScreen('works');
+              setSelectedProject(null);
+            }}
             className="px-10 py-4 border-2 border-bg-dark text-bg-dark font-bold rounded-xl hover:bg-bg-dark/10 transition-colors"
           >
             {t.activities.viewPortfolio}
@@ -736,19 +843,19 @@ export default function App() {
           <h2 className="text-3xl font-bold">{t.contact.infoTitle}</h2>
           <div className="space-y-6">
             {[
-              { icon: <Mail className="text-primary" />, label: t.contact.email, value: 'jirakit661102057104@gmail.com' },
-              { icon: <Instagram className="text-primary" />, label: t.contact.instagram, value: 'ppperth.ixz' },
-              { icon: <Phone className="text-primary" />, label: t.contact.phone, value: '0807034438' },
+              { icon: <Mail className="text-primary" />, label: t.contact.email, value: 'jirakit661102057104@gmail.com', href: 'https://mail.google.com/mail/?view=cm&fs=1&to=jirakit661102057104@gmail.com' },
+              { icon: <Instagram className="text-primary" />, label: t.contact.instagram, value: 'ppperth.ixz', href: 'https://instagram.com/ppperth.ixz' },
+              { icon: <Phone className="text-primary" />, label: t.contact.phone, value: '0807034438', href: 'tel:0807034438' },
             ].map((item, i) => (
-              <div key={i} className="flex items-center gap-6">
-                <div className="size-14 rounded-2xl bg-primary/10 flex items-center justify-center">
+              <a key={i} href={item.href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-6 group">
+                <div className="size-14 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:text-bg-dark transition-colors">
                   {item.icon}
                 </div>
                 <div>
                   <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">{item.label}</p>
-                  <p className="text-xl font-bold">{item.value}</p>
+                  <p className="text-xl font-bold group-hover:text-primary transition-colors">{item.value}</p>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>

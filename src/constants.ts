@@ -5,8 +5,12 @@ export interface Project {
   description: string;
   descriptionTh?: string;
   image: string;
+  additionalImages?: string[];
+  downloadUrl?: string;
+  status?: string;
+  statusTh?: string;
   tags: string[];
-  category: 'Web Dev' | 'UI Design' | 'IoT' | 'Mobile Apps';
+  category: 'Web Dev' | 'UI Design' | 'IoT' | 'Mobile Apps' | 'Web Server' | 'Game Dev';
 }
 
 export interface Certificate {
@@ -17,7 +21,7 @@ export interface Certificate {
   issuerTh?: string;
   date: string;
   dateTh?: string;
-  category: 'Development' | 'Networking' | 'Academic' | 'Cloud' | 'Data' | 'Design' | 'Cyber Security' | 'Soft Skills';
+  category: 'Academic' | 'Student Activities' | 'Training';
   image: string;
   credentialId?: string;
   description?: string;
@@ -40,53 +44,126 @@ export interface Activity {
 export const PROJECTS: Project[] = [
   {
     id: '1',
-    title: 'Student Management System',
-    titleTh: 'ระบบจัดการนักศึกษา',
-    description: 'A comprehensive dashboard for academic monitoring, grading, and attendance tracking for PCRU faculty.',
-    descriptionTh: 'แดชบอร์ดที่ครอบคลุมสำหรับการติดตามวิชาการ การให้คะแนน และการเช็คชื่อสำหรับคณะครู PCRU',
-    image: 'https://placehold.co/800x600?text=Coming+Soon',
-    tags: ['REACT', 'NODE.JS'],
+    title: 'Faculty Activity Registration System',
+    titleTh: 'ลงทะเบียนกิจกกรรมสำหรับนักศึกษาณะวิทยาศาสตร์และเทคโนโลยี',
+    description: 'A comprehensive web application for managing and registering faculty activities for students.',
+    descriptionTh: 'เว็บแอปพลิเคชันสำหรับการลงทะเบียนกิจกรรมต่างๆ สำหรับนักศึกษาคณะวิทยาศาสตร์และเทคโนโลยี',
+    image: 'https://placehold.co/800x600?text=Faculty+Activity+System',
+    additionalImages: [
+      'https://placehold.co/800x600?text=Dashboard+View',
+      'https://placehold.co/800x600?text=Registration+Form',
+      'https://placehold.co/800x600?text=Admin+Panel'
+    ],
+    downloadUrl: '#',
+    status: 'In Progress',
+    statusTh: 'กำลังดำเนินการ',
+    tags: ['REACT', 'NODE.JS', 'FIREBASE'],
     category: 'Web Dev'
   },
   {
     id: '2',
-    title: 'E-commerce Experience',
-    titleTh: 'ประสบการณ์อีคอมเมิร์ซ',
-    description: 'Modernized shopping interface focusing on high conversion and accessibility for mobile users.',
-    descriptionTh: 'อินเทอร์เฟซการช็อปปิ้งที่ทันสมัยซึ่งเน้นการเพิ่มยอดขายและการเข้าถึงสำหรับผู้ใช้มือถือ',
-    image: 'https://placehold.co/800x600?text=Coming+Soon',
+    title: 'UX/UI Application Design with Figma',
+    titleTh: 'ออกแบบ UX/UI Application ด้วย Figma',
+    description: 'Professional mobile application design using Figma, focusing on user experience and modern interface principles.',
+    descriptionTh: 'การออกแบบแอปพลิเคชันมือถือระดับมืออาชีพด้วย Figma โดยเน้นที่ประสบการณ์ผู้ใช้และหลักการอินเทอร์เฟซที่ทันสมัย',
+    image: 'https://placehold.co/800x600?text=Figma+Design+Project',
+    status: 'In Progress',
+    statusTh: 'กำลังดำเนินการ',
     tags: ['UI/UX', 'MOBILE'],
-    category: 'UI Design'
+    category: 'UI Design',
+    additionalImages: [
+      'https://placehold.co/800x600?text=User+Flow',
+      'https://placehold.co/800x600?text=Wireframes',
+      'https://placehold.co/800x600?text=Visual+Design'
+    ]
   },
   {
     id: '3',
-    title: 'IoT Smart Home Hub',
-    titleTh: 'ศูนย์กลางบ้านอัจฉริยะ IoT',
-    description: 'An integrated system for controlling lights and security through a centralized hardware gateway.',
-    descriptionTh: 'ระบบรวมสำหรับการควบคุมไฟและความปลอดภัยผ่านเกตเวย์ฮาร์ดแวร์ส่วนกลาง',
-    image: 'https://placehold.co/800x600?text=Coming+Soon',
-    tags: ['IOT', 'PYTHON'],
-    category: 'IoT'
+    title: 'Smart Waste Sorting Bin Development',
+    titleTh: 'การพัฒนาถังคัดแยกขยะอัจฉริยะ และ การเทรนโมเดล',
+    description: 'Development of a smart bin that automatically sorts waste using AI models and model training.',
+    descriptionTh: 'การพัฒนาถังขยะอัจฉริยะที่สามารถคัดแยกขยะได้โดยอัตโนมัติโดยใช้การเทรนโมเดล AI',
+    image: 'https://placehold.co/800x600?text=Smart+Waste+Bin',
+    status: 'In Progress',
+    statusTh: 'กำลังดำเนินการ',
+    tags: ['IOT', 'AI', 'MODEL TRAINING'],
+    category: 'IoT',
+    additionalImages: [
+      'https://placehold.co/800x600?text=Hardware+Setup',
+      'https://placehold.co/800x600?text=Model+Training+Process',
+      'https://placehold.co/800x600?text=Testing+Phase'
+    ]
+  },
+  {
+    id: '7',
+    title: 'IoT Air Conditioner Control System',
+    titleTh: 'การติดตั้งสวิตช์เปิดปิดแอร์ระบบ IOT เชื่อมด้วยแอป SmartLife',
+    description: 'Installation of smart switches for air conditioning control via the SmartLife mobile application.',
+    descriptionTh: 'การติดตั้งสวิตช์อัจฉริยะสำหรับควบคุมเครื่องปรับอากาศผ่านแอปพลิเคชัน SmartLife',
+    image: 'https://placehold.co/800x600?text=IoT+Air+Con',
+    status: 'In Progress',
+    statusTh: 'กำลังดำเนินการ',
+    tags: ['IOT', 'SMART LIFE', 'AUTOMATION'],
+    category: 'IoT',
+    additionalImages: [
+      'https://placehold.co/800x600?text=SmartLife+App+Interface',
+      'https://placehold.co/800x600?text=Switch+Installation',
+      'https://placehold.co/800x600?text=Automation+Rules'
+    ]
   },
   {
     id: '4',
-    title: 'PCRU Analytics Dash',
-    titleTh: 'แดชบอร์ดวิเคราะห์ PCRU',
-    description: 'Visualizing academic performance datasets to identify student trends across the IT department.',
-    descriptionTh: 'การแสดงข้อมูลชุดข้อมูลผลการเรียนเพื่อระบุแนวโน้มของนักศึกษาในภาควิชาไอที',
-    image: 'https://placehold.co/800x600?text=Coming+Soon',
-    tags: ['DATA', 'D3.JS'],
+    title: 'My Website Portfolio',
+    titleTh: 'เว็บไซต์พอร์ตโฟลิโอของฉัน',
+    description: 'A personal portfolio web application showcasing my professional journey, projects, and achievements.',
+    descriptionTh: 'เว็บแอปพลิเคชันพอร์ตโฟลิโอส่วนตัวที่รวบรวมผลงาน เกียรติบัตร และกิจกรรมต่างๆ ของฉัน',
+    image: 'https://placehold.co/800x600?text=My+Portfolio+V2',
+    additionalImages: [
+      'https://placehold.co/800x600?text=Home+Screen',
+      'https://placehold.co/800x600?text=Projects+Grid',
+      'https://placehold.co/800x600?text=Contact+Section'
+    ],
+    downloadUrl: '#',
+    status: 'In Progress',
+    statusTh: 'กำลังดำเนินการ',
+    tags: ['REACT', 'TAILWIND', 'MOTION'],
     category: 'Web Dev'
   },
   {
     id: '5',
-    title: 'Mobile Learning App',
-    titleTh: 'แอปพลิเคชันการเรียนรู้บนมือถือ',
-    description: 'Interactive educational tools designed specifically for the PCRU student ecosystem.',
-    descriptionTh: 'เครื่องมือการศึกษาแบบโต้ตอบที่ออกแบบมาโดยเฉพาะสำหรับระบบนิเวศของนักศึกษา PCRU',
-    image: 'https://placehold.co/800x600?text=Coming+Soon',
-    tags: ['SWIFT', 'EDUTECH'],
-    category: 'Mobile Apps'
+    title: 'Lom Sak Tourism & OTOP Products App',
+    titleTh: 'แอปพลิเคชั่นนำเสนอแหล่งท่องเที่ยวและสินค้า OTOP อำเภอหล่มสัก',
+    description: 'A mobile application showcasing tourist attractions and OTOP products in Lom Sak District.',
+    descriptionTh: 'แอปพลิเคชั่นนำเสนอแหล่งท่องเที่ยวและสินค้า OTOP อำเภอหล่มสัก เพื่อส่งเสริมการท่องเที่ยวและเศรษฐกิจท้องถิ่น',
+    image: 'https://placehold.co/800x600?text=Lom+Sak+OTOP+App',
+    status: 'In Progress',
+    statusTh: 'กำลังดำเนินการ',
+    tags: ['FLUTTER', 'FIREBASE', 'OTOP'],
+    category: 'Mobile Apps',
+    additionalImages: [
+      'https://placehold.co/800x600?text=Home+Screen',
+      'https://placehold.co/800x600?text=Tourist+Attractions',
+      'https://placehold.co/800x600?text=OTOP+Products',
+      'https://placehold.co/800x600?text=Map+View'
+    ]
+  },
+  {
+    id: '8',
+    title: 'Smart Waste Sorting App',
+    titleTh: 'แอปพลิเคชั่นคัดแยกขยะอัจฉริยะ',
+    description: 'A mobile application for intelligent waste classification and sorting.',
+    descriptionTh: 'แอปพลิเคชั่นสำหรับช่วยคัดแยกขยะอัจฉริยะ เพื่ออำนวยความสะดวกในการจัดการขยะอย่างถูกวิธี',
+    image: 'https://placehold.co/800x600?text=Smart+Waste+App',
+    status: 'In Progress',
+    statusTh: 'กำลังดำเนินการ',
+    tags: ['MOBILE', 'AI', 'ENVIRONMENT'],
+    category: 'Mobile Apps',
+    additionalImages: [
+      'https://placehold.co/800x600?text=Camera+Scanner',
+      'https://placehold.co/800x600?text=AI+Classification',
+      'https://placehold.co/800x600?text=Sorting+Guide',
+      'https://placehold.co/800x600?text=User+History'
+    ]
   },
   {
     id: '6',
@@ -95,8 +172,49 @@ export const PROJECTS: Project[] = [
     description: 'My initial exploration into professional portfolio design with a focus on typography and grid systems.',
     descriptionTh: 'การสำรวจเบื้องต้นของฉันในการออกแบบพอร์ตโฟลิโอระดับมืออาชีพโดยเน้นที่ตัวอักษรและระบบกริด',
     image: 'https://placehold.co/800x600?text=Coming+Soon',
+    status: 'In Progress',
+    statusTh: 'กำลังดำเนินการ',
     tags: ['DESIGN', 'TAILWIND'],
-    category: 'UI Design'
+    category: 'UI Design',
+    additionalImages: [
+      'https://placehold.co/800x600?text=V1+Home',
+      'https://placehold.co/800x600?text=V1+Layout',
+      'https://placehold.co/800x600?text=V1+Typography'
+    ]
+  },
+  {
+    id: '9',
+    title: 'Minecraft Server Hosting',
+    titleTh: 'เปิดเซิฟเวอร์เกม มายคราฟ',
+    description: 'Setting up and managing a dedicated Minecraft server for a community of players.',
+    descriptionTh: 'การตั้งค่าและจัดการเซิร์ฟเวอร์เกม Minecraft สำหรับกลุ่มผู้เล่น',
+    image: 'https://placehold.co/800x600?text=Minecraft+Server',
+    status: 'In Progress',
+    statusTh: 'กำลังดำเนินการ',
+    tags: ['MINECRAFT', 'LINUX', 'NETWORKING'],
+    category: 'Web Server',
+    additionalImages: [
+      'https://placehold.co/800x600?text=Server+Console',
+      'https://placehold.co/800x600?text=Plugin+Setup',
+      'https://placehold.co/800x600?text=In-game+View'
+    ]
+  },
+  {
+    id: '10',
+    title: 'SomOh So Ghost',
+    titleTh: 'SomOh So Ghost',
+    description: 'A horror survival game built with Unreal Engine 5. Run away from a ghost modeled after a friend. Created for fun and UE5 practice.',
+    descriptionTh: 'การสร้างเกม Horror ด้วย Unreal Engine 5 โดยชื่อโปรเจกต์เกมมีชื่อว่า SomOh So Ghost เป็นเกมวิ่งหนีผีที่ต้นแบบโมเดลมาจากเพื่อน จุดประสงค์เอาไว้ล้อเพื่อนเฉยๆ แต่หลักคือฝึกใช้ Unreal Engine 5',
+    image: 'https://placehold.co/800x600?text=SomOh+So+Ghost',
+    status: 'In Progress',
+    statusTh: 'กำลังดำเนินการ',
+    tags: ['UNREAL ENGINE 5', 'HORROR', '3D DESIGN'],
+    category: 'Game Dev',
+    additionalImages: [
+      'https://placehold.co/800x600?text=UE5+Environment',
+      'https://placehold.co/800x600?text=Ghost+Model',
+      'https://placehold.co/800x600?text=Gameplay+Mechanics'
+    ]
   }
 ];
 
@@ -109,7 +227,7 @@ export const CERTIFICATES: Certificate[] = [
     issuerTh: 'Coursera และ Google',
     date: 'May 2023',
     dateTh: 'พฤษภาคม 2023',
-    category: 'Development',
+    category: 'Training',
     image: 'https://placehold.co/800x600?text=Coming+Soon',
     credentialId: 'PCRU-IT-2024-9981-SK',
     description: 'This certification validates expertise in server management, cloud deployment strategies, and high-availability architecture for modern web applications.',
@@ -123,7 +241,7 @@ export const CERTIFICATES: Certificate[] = [
     issuerTh: 'Cisco Networking Academy',
     date: 'Jan 2024',
     dateTh: 'มกราคม 2024',
-    category: 'Networking',
+    category: 'Training',
     image: 'https://placehold.co/800x600?text=Coming+Soon'
   },
   {
@@ -145,7 +263,7 @@ export const CERTIFICATES: Certificate[] = [
     issuerTh: 'Google Cloud',
     date: 'Nov 2023',
     dateTh: 'พฤศจิกายน 2023',
-    category: 'Cloud',
+    category: 'Training',
     image: 'https://placehold.co/800x600?text=Coming+Soon'
   },
   {
@@ -156,7 +274,7 @@ export const CERTIFICATES: Certificate[] = [
     issuerTh: 'IBM Skills',
     date: 'Mar 2024',
     dateTh: 'มีนาคม 2024',
-    category: 'Data',
+    category: 'Training',
     image: 'https://placehold.co/800x600?text=Coming+Soon'
   },
   {
@@ -167,7 +285,18 @@ export const CERTIFICATES: Certificate[] = [
     issuerTh: 'Design Academy',
     date: 'Dec 2023',
     dateTh: 'ธันวาคม 2023',
-    category: 'Design',
+    category: 'Training',
+    image: 'https://placehold.co/800x600?text=Coming+Soon'
+  },
+  {
+    id: '7',
+    title: 'Student Leader Award',
+    titleTh: 'รางวัลผู้นำนักศึกษาดีเด่น',
+    issuer: 'Student Affairs PCRU',
+    issuerTh: 'กองพัฒนานักศึกษา มรภ.เพชรบูรณ์',
+    date: 'Feb 2024',
+    dateTh: 'กุมภาพันธ์ 2024',
+    category: 'Student Activities',
     image: 'https://placehold.co/800x600?text=Coming+Soon'
   }
 ];
