@@ -48,11 +48,11 @@ export const PROJECTS: Project[] = [
     titleTh: 'ลงทะเบียนกิจกกรรมสำหรับนักศึกษาณะวิทยาศาสตร์และเทคโนโลยี',
     description: 'A comprehensive web application for managing and registering faculty activities for students.',
     descriptionTh: 'เว็บแอปพลิเคชันสำหรับการลงทะเบียนกิจกรรมต่างๆ สำหรับนักศึกษาคณะวิทยาศาสตร์และเทคโนโลยี',
-    image: 'https://placehold.co/800x600?text=Faculty+Activity+System',
+    image: '/images/sciregis.png',
     additionalImages: [
-      'https://placehold.co/800x600?text=Dashboard+View',
-      'https://placehold.co/800x600?text=Registration+Form',
-      'https://placehold.co/800x600?text=Admin+Panel'
+      '/images/regis1.png',
+      '/images/regis2.png',
+      '/images/regis3.png',
     ],
     downloadUrl: '#',
     status: 'In Progress',
@@ -66,15 +66,15 @@ export const PROJECTS: Project[] = [
     titleTh: 'ออกแบบ UX/UI Application ด้วย Figma',
     description: 'Professional mobile application design using Figma, focusing on user experience and modern interface principles.',
     descriptionTh: 'การออกแบบแอปพลิเคชันมือถือระดับมืออาชีพด้วย Figma โดยเน้นที่ประสบการณ์ผู้ใช้และหลักการอินเทอร์เฟซที่ทันสมัย',
-    image: 'https://placehold.co/800x600?text=Figma+Design+Project',
+    image: '/images/Figma.jpg',
     status: 'In Progress',
     statusTh: 'กำลังดำเนินการ',
     tags: ['UI/UX', 'MOBILE'],
     category: 'UI Design',
     additionalImages: [
-      'https://placehold.co/800x600?text=User+Flow',
-      'https://placehold.co/800x600?text=Wireframes',
-      'https://placehold.co/800x600?text=Visual+Design'
+      '/images/figma1.png',
+      '/images/figma2.png',
+      '/images/figma3.png'
     ]
   },
   {
@@ -100,15 +100,15 @@ export const PROJECTS: Project[] = [
     titleTh: 'การติดตั้งสวิตช์เปิดปิดแอร์ระบบ IOT เชื่อมด้วยแอป SmartLife',
     description: 'Installation of smart switches for air conditioning control via the SmartLife mobile application.',
     descriptionTh: 'การติดตั้งสวิตช์อัจฉริยะสำหรับควบคุมเครื่องปรับอากาศผ่านแอปพลิเคชัน SmartLife',
-    image: 'https://placehold.co/800x600?text=IoT+Air+Con',
+    image: '/images/iotswitch1.jpg',
     status: 'In Progress',
     statusTh: 'กำลังดำเนินการ',
     tags: ['IOT', 'SMART LIFE', 'AUTOMATION'],
     category: 'IoT',
     additionalImages: [
-      'https://placehold.co/800x600?text=SmartLife+App+Interface',
-      'https://placehold.co/800x600?text=Switch+Installation',
-      'https://placehold.co/800x600?text=Automation+Rules'
+      '/images/iotswitch2.jpg',
+      '/images/iotswitch3.jpg',
+      '/images/iotswitch4.jpg'
     ]
   },
   {
@@ -117,11 +117,10 @@ export const PROJECTS: Project[] = [
     titleTh: 'เว็บไซต์พอร์ตโฟลิโอของฉัน',
     description: 'A personal portfolio web application showcasing my professional journey, projects, and achievements.',
     descriptionTh: 'เว็บแอปพลิเคชันพอร์ตโฟลิโอส่วนตัวที่รวบรวมผลงาน เกียรติบัตร และกิจกรรมต่างๆ ของฉัน',
-    image: 'https://placehold.co/800x600?text=My+Portfolio+V2',
+    image: '/images/mainport.png',
     additionalImages: [
-      'https://placehold.co/800x600?text=Home+Screen',
-      'https://placehold.co/800x600?text=Projects+Grid',
-      'https://placehold.co/800x600?text=Contact+Section'
+      '/images/portfolio2.png',
+      '/images/portfolio1.png',
     ],
     downloadUrl: '#',
     status: 'In Progress',
@@ -131,20 +130,20 @@ export const PROJECTS: Project[] = [
   },
   {
     id: '5',
-    title: 'Lom Sak Tourism & OTOP Products App',
-    titleTh: 'แอปพลิเคชั่นนำเสนอแหล่งท่องเที่ยวและสินค้า OTOP อำเภอหล่มสัก',
+    title: 'Lom Sak Travel',
+    titleTh: 'แอปพลิเคชั่นท่องเที่ยวหล่มสัก',
     description: 'A mobile application showcasing tourist attractions and OTOP products in Lom Sak District.',
     descriptionTh: 'แอปพลิเคชั่นนำเสนอแหล่งท่องเที่ยวและสินค้า OTOP อำเภอหล่มสัก เพื่อส่งเสริมการท่องเที่ยวและเศรษฐกิจท้องถิ่น',
-    image: 'https://placehold.co/800x600?text=Lom+Sak+OTOP+App',
+    image: '/images/LomSakTravel.png',
     status: 'In Progress',
     statusTh: 'กำลังดำเนินการ',
-    tags: ['FLUTTER', 'FIREBASE', 'OTOP'],
+    tags: ['JAVA', 'FIREBASE', 'Android Studio'],
     category: 'Mobile Apps',
     additionalImages: [
-      'https://placehold.co/800x600?text=Home+Screen',
-      'https://placehold.co/800x600?text=Tourist+Attractions',
-      'https://placehold.co/800x600?text=OTOP+Products',
-      'https://placehold.co/800x600?text=Map+View'
+      '/images/Home.jpg',
+      '/images/Touris.jpg',
+      '/images/OTOP.jpg',
+      '/images/Contact.jpg'
     ]
   },
   {
@@ -153,7 +152,7 @@ export const PROJECTS: Project[] = [
     titleTh: 'แอปพลิเคชั่นคัดแยกขยะอัจฉริยะ',
     description: 'A mobile application for intelligent waste classification and sorting.',
     descriptionTh: 'แอปพลิเคชั่นสำหรับช่วยคัดแยกขยะอัจฉริยะ เพื่ออำนวยความสะดวกในการจัดการขยะอย่างถูกวิธี',
-    image: 'https://placehold.co/800x600?text=Smart+Waste+App',
+    image: '/images/ECOBIN.png',
     status: 'In Progress',
     statusTh: 'กำลังดำเนินการ',
     tags: ['MOBILE', 'AI', 'ENVIRONMENT'],
@@ -167,19 +166,18 @@ export const PROJECTS: Project[] = [
   },
   {
     id: '6',
-    title: 'Portfolio Version 1.0',
-    titleTh: 'พอร์ตโฟลิโอ เวอร์ชัน 1.0',
+    title: 'Portfolio ',
+    titleTh: 'พอร์ตโฟลิโอ ',
     description: 'My initial exploration into professional portfolio design with a focus on typography and grid systems.',
     descriptionTh: 'การสำรวจเบื้องต้นของฉันในการออกแบบพอร์ตโฟลิโอระดับมืออาชีพโดยเน้นที่ตัวอักษรและระบบกริด',
-    image: 'https://placehold.co/800x600?text=Coming+Soon',
+    image: '/images/canva.png',
     status: 'In Progress',
     statusTh: 'กำลังดำเนินการ',
-    tags: ['DESIGN', 'TAILWIND'],
+    tags: ['DESIGN','CANVAS'],
     category: 'UI Design',
     additionalImages: [
-      'https://placehold.co/800x600?text=V1+Home',
-      'https://placehold.co/800x600?text=V1+Layout',
-      'https://placehold.co/800x600?text=V1+Typography'
+      '/images/myportfolio.png',
+
     ]
   },
   {
@@ -188,15 +186,14 @@ export const PROJECTS: Project[] = [
     titleTh: 'เปิดเซิฟเวอร์เกม มายคราฟ',
     description: 'Setting up and managing a dedicated Minecraft server for a community of players.',
     descriptionTh: 'การตั้งค่าและจัดการเซิร์ฟเวอร์เกม Minecraft สำหรับกลุ่มผู้เล่น',
-    image: 'https://placehold.co/800x600?text=Minecraft+Server',
+    image: '/images/Falix.jpg',
     status: 'In Progress',
     statusTh: 'กำลังดำเนินการ',
     tags: ['MINECRAFT', 'LINUX', 'NETWORKING'],
     category: 'Web Server',
     additionalImages: [
-      'https://placehold.co/800x600?text=Server+Console',
-      'https://placehold.co/800x600?text=Plugin+Setup',
-      'https://placehold.co/800x600?text=In-game+View'
+      '/images/severfalix.png',
+      '/images/totalfalix.png',
     ]
   },
   {
@@ -205,14 +202,14 @@ export const PROJECTS: Project[] = [
     titleTh: 'SomOh So Ghost',
     description: 'A horror survival game built with Unreal Engine 5. Run away from a ghost modeled after a friend. Created for fun and UE5 practice.',
     descriptionTh: 'การสร้างเกม Horror ด้วย Unreal Engine 5 โดยชื่อโปรเจกต์เกมมีชื่อว่า SomOh So Ghost เป็นเกมวิ่งหนีผีที่ต้นแบบโมเดลมาจากเพื่อน จุดประสงค์เอาไว้ล้อเพื่อนเฉยๆ แต่หลักคือฝึกใช้ Unreal Engine 5',
-    image: 'https://placehold.co/800x600?text=SomOh+So+Ghost',
+    image: '/images/unreal5.png',
     status: 'In Progress',
     statusTh: 'กำลังดำเนินการ',
     tags: ['UNREAL ENGINE 5', 'HORROR', '3D DESIGN'],
     category: 'Game Dev',
     additionalImages: [
       'https://placehold.co/800x600?text=UE5+Environment',
-      'https://placehold.co/800x600?text=Ghost+Model',
+      '/images/ghostmodel.png',
       'https://placehold.co/800x600?text=Gameplay+Mechanics'
     ]
   }
@@ -221,81 +218,81 @@ export const PROJECTS: Project[] = [
 export const CERTIFICATES: Certificate[] = [
   {
     id: '1',
-    title: 'Advanced Full-Stack Web Engineering',
-    titleTh: 'วิศวกรรมเว็บ Full-Stack ขั้นสูง',
-    issuer: 'Coursera & Google',
-    issuerTh: 'Coursera และ Google',
-    date: 'May 2023',
-    dateTh: 'พฤษภาคม 2023',
+    title: 'Coming Soon',
+    titleTh: 'เร็วๆ นี้',
+    issuer: '-',
+    issuerTh: '-',
+    date: 'DD/MM/YYYY',
+    dateTh: 'วว/ดด/ปปปป',
     category: 'Training',
     image: 'https://placehold.co/800x600?text=Coming+Soon',
-    credentialId: 'PCRU-IT-2024-9981-SK',
-    description: 'This certification validates expertise in server management, cloud deployment strategies, and high-availability architecture for modern web applications.',
-    descriptionTh: 'เกียรติบัตรนี้รับรองความเชี่ยวชาญในการจัดการเซิร์ฟเวอร์ กลยุทธ์การปรับใช้คลาวด์ และสถาปัตยกรรมที่มีความพร้อมใช้งานสูงสำหรับเว็บแอปพลิเคชันสมัยใหม่'
+    credentialId: '-',
+    description: '-',
+    descriptionTh: '-'
   },
   {
     id: '2',
-    title: 'CCNA: Introduction to Networks',
-    titleTh: 'CCNA: ความรู้พื้นฐานเกี่ยวกับเครือข่าย',
-    issuer: 'Cisco Networking Academy',
-    issuerTh: 'Cisco Networking Academy',
-    date: 'Jan 2024',
-    dateTh: 'มกราคม 2024',
+    title: 'Coming Soon',
+    titleTh: 'เร็วๆ นี้',
+    issuer: '-',
+    issuerTh: '-',
+    date: 'DD/MM/YYYY',
+    dateTh: 'วว/ดด/ปปปป',
     category: 'Training',
     image: 'https://placehold.co/800x600?text=Coming+Soon'
   },
   {
     id: '3',
-    title: 'Best Project Award: IT PCRU Expo',
-    titleTh: 'รางวัลโปรเจกต์ยอดเยี่ยม: IT PCRU Expo',
-    issuer: 'IT PCRU University',
-    issuerTh: 'มหาวิทยาลัยราชภัฏเพชรบูรณ์',
-    date: 'Aug 2023',
-    dateTh: 'สิงหาคม 2023',
+    title: 'Coming Soon',
+    titleTh: 'เร็วๆ นี้',
+    issuer: '-',
+    issuerTh: '-',
+    date: 'DD/MM/YYYY',
+    dateTh: 'วว/ดด/ปปปป',
     category: 'Academic',
     image: 'https://placehold.co/800x600?text=Coming+Soon'
   },
   {
     id: '4',
-    title: 'GCP Fundamentals: Core Infrastructure',
-    titleTh: 'พื้นฐาน GCP: โครงสร้างพื้นฐานหลัก',
-    issuer: 'Google Cloud',
+    title: 'Coming Soon',
+    titleTh: 'เร็วๆ นี้',
+    issuer: '-',
     issuerTh: 'Google Cloud',
-    date: 'Nov 2023',
-    dateTh: 'พฤศจิกายน 2023',
+    date: 'DD/MM/YYYY',
+    dateTh: 'วว/ดด/ปปปป',
     category: 'Training',
     image: 'https://placehold.co/800x600?text=Coming+Soon'
   },
   {
     id: '5',
-    title: 'Python for Data Science Specialization',
-    titleTh: 'ความเชี่ยวชาญ Python สำหรับวิทยาการข้อมูล',
-    issuer: 'IBM Skills',
-    issuerTh: 'IBM Skills',
-    date: 'Mar 2024',
-    dateTh: 'มีนาคม 2024',
+    title: 'Coming Soon',
+    titleTh: 'เร็วๆ นี้',
+    issuer: '-',
+    issuerTh: '-',
+    date: 'DD/MM/YYYY',
+    dateTh: 'วว/ดด/ปปปป',
     category: 'Training',
     image: 'https://placehold.co/800x600?text=Coming+Soon'
   },
   {
     id: '6',
-    title: 'Human-Centered Design Fundamentals',
-    titleTh: 'พื้นฐานการออกแบบที่เน้นมนุษย์เป็นศูนย์กลาง',
-    issuer: 'Design Academy',
-    issuerTh: 'Design Academy',
-    date: 'Dec 2023',
-    dateTh: 'ธันวาคม 2023',
+    title: 'Coming Soon',
+    titleTh: 'เร็วๆ นี้',
+    issuer: '-',
+    issuerTh: '-',
+    date: 'DD/MM/YYYY',
+    dateTh: 'วว/ดด/ปปปป',
     category: 'Training',
     image: 'https://placehold.co/800x600?text=Coming+Soon'
   },
   {
     id: '7',
-    title: 'Student Leader Award',
-    titleTh: 'รางวัลผู้นำนักศึกษาดีเด่น',
-    issuer: 'Student Affairs PCRU',
-    issuerTh: 'กองพัฒนานักศึกษา มรภ.เพชรบูรณ์',
-    date: 'Feb 2024',
-    dateTh: 'กุมภาพันธ์ 2024',
+    title: 'Coming Soon',
+    titleTh: 'เร็วๆ นี้',
+    issuer: '-',
+    issuerTh: '-',
+    date: 'DD/MM/YYYY',
+    dateTh: 'วว/ดด/ปปปป',
     category: 'Student Activities',
     image: 'https://placehold.co/800x600?text=Coming+Soon'
   }
@@ -304,51 +301,70 @@ export const CERTIFICATES: Certificate[] = [
 export const ACTIVITIES: Activity[] = [
   {
     id: '1',
-    title: 'National Hackathon 2023',
-    titleTh: 'แฮกกาธอนระดับชาติ 2023',
-    description: 'Lead Developer - Built a sustainable energy tracking application using React and Firebase. Won the "Most Innovative Solution" award among 50 competing teams.',
-    descriptionTh: 'หัวหน้านักพัฒนา - สร้างแอปพลิเคชันติดตามพลังงานที่ยั่งยืนโดยใช้ React และ Firebase ได้รับรางวัล "โซลูชันนวัตกรรมยอดเยี่ยม" จาก 50 ทีมที่เข้าแข่งขัน',
-    date: 'Dec 2023',
-    dateTh: 'ธันวาคม 2023',
+    title: 'AUCC 2026',
+    titleTh: 'AUCC 2026',
+    description: 'Asia Undergraduate Conference on Computing 2026 - Faculty and students participated in the 14th Asia Undergraduate Conference on Computing held between February 4–6, 2026, at Rambhai Barni Rajabhat University, Chanthaburi.',
+    descriptionTh: 'Asia Undergraduate Conference on Computing 2026 - คณาจารย์และนักศึกษาเข้าร่วมการประชุมวิชาการระดับปริญญาตรีด้านคอมพิวเตอร์ในภูมิภาคเอเชีย ครั้งที่ 14 ระหว่างวันที่ 4–6 กุมภาพันธ์ 2569 ณ มหาวิทยาลัยราชภัฏรำไพพรรณี จังหวัดจันทบุรี',
+    date: 'Feb 2026',
+    dateTh: '4 กุมภาพันธ์ 2569',
     type: 'NATIONAL',
-    icon: 'trophy',
-    image: 'https://placehold.co/800x600?text=Coming+Soon'
+    icon: 'school',
+    image: '/images/aucc2026.jpg'
   },
   {
     id: '2',
-    title: 'Web Development Intensive Workshop',
-    titleTh: 'เวิร์กช็อปการพัฒนาเว็บแบบเข้มข้น',
-    description: 'Participant - Advanced training session on React.js hooks, state management, and Tailwind CSS architecture. Applied skills to rebuild the IT PCRU club portal.',
-    descriptionTh: 'ผู้เข้าร่วม - เซสชันการฝึกอบรมขั้นสูงเกี่ยวกับ React.js hooks, การจัดการสถานะ และสถาปัตยกรรม Tailwind CSS นำทักษะไปใช้ในการสร้างพอร์ทัลคลับ IT PCRU ใหม่',
-    date: 'Oct 2023',
-    dateTh: 'ตุลาคม 2023',
-    type: 'WORKSHOP',
-    icon: 'school',
-    image: 'https://placehold.co/800x600?text=Coming+Soon'
+    title: 'Student Activities',
+    titleTh: 'ด้านกิจกรรมนักศึกษา',
+    description: 'Participated in the Science and Technology Student Network Project of 8 Northern Institutions. The Student Club received the "Sustainable Social Engineer" award, reflecting the potential of students in applying science and technology to community development.',
+    descriptionTh: 'เข้าร่วมโครงการเครือข่ายนักศึกษาคณะวิทยาศาสตร์และเทคโนโลยี 8 สถาบันภาคเหนือ ในโอกาสนี้ สโมสรนักศึกษาคณะวิทยาศาสตร์และเทคโนโลยี ได้รับรางวัล “วิศวกรสังคมยั่งยืน” ซึ่งนับเป็นความภาคภูมิใจและสะท้อนถึงศักยภาพของนักศึกษาในการนำองค์ความรู้ด้านวิทยาศาสตร์และเทคโนโลยีไปประยุกต์ใช้ในการพัฒนาชุมชนและสังคมอย่างเป็นรูปธรรม',
+    date: 'Jan 2026',
+    dateTh: '28–30 มกราคม 2569',
+    type: 'VOLUNTEERING',
+    icon: 'groups',
+    image: '/images/samo8.jpg'
   },
   {
     id: '3',
-    title: 'IT PCRU Open House',
-    titleTh: 'IT PCRU โอเพ่นเฮาส์',
-    description: 'Infrastructure Lead - Orchestrated the networking setup for the annual Open House. Managed a team of 5 students to ensure seamless connectivity for 20+ exhibit booths.',
-    descriptionTh: 'หัวหน้าโครงสร้างพื้นฐาน - จัดการการตั้งค่าเครือข่ายสำหรับโอเพ่นเฮาส์ประจำปี จัดการทีมงานนักศึกษา 5 คนเพื่อให้แน่ใจว่ามีการเชื่อมต่อที่ราบรื่นสำหรับบูธนิทรรศการกว่า 20 บูธ',
-    date: 'Aug 2023',
-    dateTh: 'สิงหาคม 2023',
-    type: 'VOLUNTEERING',
-    icon: 'groups',
-    image: 'https://placehold.co/800x600?text=Coming+Soon'
+    title: 'Social Engineer Innovation',
+    titleTh: 'การพรีเซนต์นวัตกรรมวิศวกรสังคม',
+    description: 'Presentation of "Pyrolysis Waste Incinerator Innovation" by the Faculty of Science and Technology.',
+    descriptionTh: 'การพรีเซนต์นวัตกรรมวิศวกรสังคม ของคณะวิทยาศาสตร์และเทคโนโลยี " นวัตรกรรม เตาเผาขยะ ด้วยกระบวนการ Pyrolysis "',
+    date: 'Aug 2025',
+    dateTh: '29 สิงหาคม 2568',
+    type: 'NATIONAL',
+    icon: 'science',
+    image: '/images/socialEngi.jpg'
   },
   {
     id: '4',
-    title: 'Community Tech Talk: AI in Education',
-    titleTh: 'การพูดคุยเทคโนโลยีชุมชน: AI ในการศึกษา',
-    description: 'Guest Speaker - Delivered a presentation on how AI tools can bridge the educational gap in provincial schools. Attended by over 100 faculty members and students.',
-    descriptionTh: 'วิทยากรรับเชิญ - บรรยายเกี่ยวกับวิธีที่เครื่องมือ AI สามารถลดช่องว่างทางการศึกษาในโรงเรียนส่วนภูมิภาค มีคณาจารย์และนักศึกษาเข้าร่วมกว่า 100 คน',
-    date: 'June 2023',
-    dateTh: 'มิถุนายน 2023',
-    type: 'SPEAKING',
-    icon: 'record_voice_over',
-    image: 'https://placehold.co/800x600?text=Coming+Soon'
+    title: 'Smart Waste Management Workshop',
+    titleTh: 'โครงการ การจัดการขยะอัจฉริยะ',
+    description: 'Participated in a workshop on Smart Waste Management, integrating Hardware and Software using Arduino IDE.',
+    descriptionTh: 'เข้าร่วมอบรม โครงการ การจัดการขยะอัจฉริยะ ที่มีการใช้ Hardware และ Software(Arduino IDE) ใช้ร่วมกัน',
+    date: 'June 2025',
+    dateTh: '13 มิถุนายน 2568',
+    type: 'WORKSHOP',
+    icon: 'hardware',
+    image: '/images/smartbin.jpg'
+  }
+];
+
+export const SKILLS = [
+  {
+    categoryKey: 'ide',
+    items: ['Android Studio', 'VS Code']
+  },
+  {
+    categoryKey: 'language',
+    items: ['Java', 'PHP', 'HTML', 'Dart', 'Python', 'C']
+  },
+  {
+    categoryKey: 'database',
+    items: ['Firebase Console', 'MySQL', 'SQL Server Management', 'MariaDB']
+  },
+  {
+    categoryKey: 'tool',
+    items: ['Unreal Engine 5']
   }
 ];
 

@@ -35,9 +35,16 @@ import {
   ArrowRight,
   ArrowLeft,
   Languages,
-  Lock
+  Lock,
+  LayoutGrid,
+  Globe,
+  Palette,
+  Cpu,
+  Smartphone,
+  Server,
+  Gamepad2
 } from 'lucide-react';
-import { PROJECTS, CERTIFICATES, ACTIVITIES, Project, Certificate, Activity } from './constants';
+import { PROJECTS, CERTIFICATES, ACTIVITIES, SKILLS, Project, Certificate, Activity } from './constants';
 import { translations } from './translations';
 
 type Screen = 'home' | 'works' | 'certificates' | 'activities' | 'about' | 'contact';
@@ -49,6 +56,8 @@ export default function App() {
   const [selectedProjectCategory, setSelectedProjectCategory] = useState<string>('All');
   const [selectedCertCategory, setSelectedCertCategory] = useState<string>('All');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [selectedActivity, setSelectedActivity] = useState<Activity | null>(null);
+  const [expandedGalleryImage, setExpandedGalleryImage] = useState<string | null>(null);
   const [githubUser, setGithubUser] = useState<any>(null);
   const [lang, setLang] = useState<Language>('en');
 
@@ -125,6 +134,8 @@ export default function App() {
               onClick={() => {
                 setCurrentScreen(item.id as Screen);
                 setSelectedProject(null);
+                setSelectedActivity(null);
+                setExpandedGalleryImage(null);
               }}
               className={`text-sm font-medium transition-colors hover:text-primary ${
                 currentScreen === item.id ? 'text-primary border-b-2 border-primary' : 'text-slate-600 dark:text-slate-400'
@@ -150,9 +161,13 @@ export default function App() {
           </div>
         </button>
 
-        <button className="flex min-w-[120px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-primary text-bg-dark text-sm font-bold transition-transform hover:scale-105 active:scale-95">
+        <a 
+          href="/images/CV.JirakitPCRU.pdf" 
+          download="/images/CV.JirakitPCRU.pdf"
+          className="flex min-w-[120px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-primary text-bg-dark text-sm font-bold transition-transform hover:scale-105 active:scale-95"
+        >
           <span>{t.nav.downloadCv}</span>
-        </button>
+        </a>
       </div>
 
       <button className="md:hidden text-slate-900 dark:text-slate-100" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -175,6 +190,8 @@ export default function App() {
                   setCurrentScreen(id as Screen);
                   setIsMenuOpen(false);
                   setSelectedProject(null);
+                  setSelectedActivity(null);
+                  setExpandedGalleryImage(null);
                 }}
                 className={`text-left text-lg font-bold capitalize ${currentScreen === id ? 'text-primary' : ''}`}
               >
@@ -182,9 +199,13 @@ export default function App() {
               </button>
             ))}
             <div className="flex items-center justify-between mt-4">
-              <button className="bg-primary text-bg-dark font-bold py-3 px-6 rounded-lg flex-1 mr-4">
+              <a 
+                href="/CV_Jirakit.pdf" 
+                download="CV_Jirakit.pdf"
+                className="bg-primary text-bg-dark font-bold py-3 px-6 rounded-lg flex-1 mr-4 text-center"
+              >
                 {t.nav.downloadCv}
-              </button>
+              </a>
               <button 
                 onClick={() => {
                   setLang(lang === 'en' ? 'th' : 'en');
@@ -269,10 +290,14 @@ export default function App() {
         <div className="flex-1 relative">
           <div className="aspect-square rounded-3xl overflow-hidden border border-primary/20 bg-bg-dark/50 relative group">
             <img 
-              src="https://placehold.co/800x800?text=Coming+Soon" 
+              src="/images/somohsoghost.png" 
               alt="Workspace" 
               className="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700"
               referrerPolicy="no-referrer"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.src = "https://placehold.co/800x800?text=Upload+to+/public/images/somohsoghost.png";
+              }}
             />
             <div className="absolute bottom-6 left-6 right-6 bg-bg-dark/90 backdrop-blur-md border border-primary/20 p-4 rounded-xl flex items-center gap-3">
               <div className="size-2 rounded-full bg-emerald-500 animate-pulse" />
@@ -387,13 +412,13 @@ export default function App() {
 
   const WorksScreen = () => {
     const categories = [
-      { id: 'All', label: t.works.categories.all },
-      { id: 'Web Dev', label: t.works.categories.web },
-      { id: 'UI Design', label: t.works.categories.ui },
-      { id: 'IoT', label: t.works.categories.iot },
-      { id: 'Mobile Apps', label: t.works.categories.mobile },
-      { id: 'Web Server', label: t.works.categories.server },
-      { id: 'Game Dev', label: t.works.categories.game },
+      { id: 'All', label: t.works.categories.all, icon: <LayoutGrid size={18} /> },
+      { id: 'Web Dev', label: t.works.categories.web, icon: <Globe size={18} /> },
+      { id: 'UI Design', label: t.works.categories.ui, icon: <Palette size={18} /> },
+      { id: 'IoT', label: t.works.categories.iot, icon: <Cpu size={18} /> },
+      { id: 'Mobile Apps', label: t.works.categories.mobile, icon: <Smartphone size={18} /> },
+      { id: 'Web Server', label: t.works.categories.server, icon: <Server size={18} /> },
+      { id: 'Game Dev', label: t.works.categories.game, icon: <Gamepad2 size={18} /> },
     ];
     const filteredProjects = selectedProjectCategory === 'All' 
       ? PROJECTS 
@@ -489,12 +514,13 @@ export default function App() {
             <button
               key={cat.id}
               onClick={() => setSelectedProjectCategory(cat.id)}
-              className={`px-6 py-2 rounded-full font-bold transition-all whitespace-nowrap ${
+              className={`px-6 py-2.5 rounded-full font-bold transition-all whitespace-nowrap flex items-center gap-2 ${
                 selectedProjectCategory === cat.id 
                   ? 'bg-primary text-bg-dark shadow-lg shadow-primary/20' 
                   : 'bg-slate-200 dark:bg-bg-dark/50 border border-slate-300 dark:border-primary/20 text-slate-600 dark:text-slate-400 hover:border-primary'
               }`}
             >
+              {cat.icon}
               {cat.label}
             </button>
           ))}
@@ -570,10 +596,7 @@ export default function App() {
           </div>
           <div className="flex items-center gap-4 bg-primary/10 p-6 rounded-2xl border border-primary/20">
             <Verified size={40} className="text-primary" />
-            <div>
-              <p className="text-primary font-black text-3xl leading-none">{CERTIFICATES.length}</p>
-              <p className="text-slate-500 dark:text-slate-400 text-xs uppercase tracking-widest font-bold mt-1">{t.certs.totalVerified}</p>
-            </div>
+            <p className="text-primary font-black text-3xl leading-none">-</p>
           </div>
         </div>
 
@@ -626,29 +649,15 @@ export default function App() {
           </h2>
           <div className="bg-white dark:bg-bg-dark/60 rounded-3xl border border-slate-200 dark:border-primary/20 overflow-hidden shadow-2xl flex flex-col lg:flex-row">
             <div className="lg:w-2/3 bg-slate-100 dark:bg-bg-dark p-8 md:p-16 flex items-center justify-center">
-              <div className="w-full max-w-2xl bg-white shadow-2xl p-8 border-[12px] border-slate-50 rounded-sm relative aspect-[1.414/1] flex flex-col items-center justify-between text-center font-serif italic text-slate-800">
-                <div className="size-16 bg-primary text-white flex items-center justify-center rounded-full">
-                  <Verified size={40} />
-                </div>
-                <div className="space-y-2">
-                  <h4 className="text-3xl font-bold not-italic font-display uppercase">{t.certs.certTitle}</h4>
-                  <p className="text-slate-500">{t.certs.certCertify}</p>
-                </div>
-                <h5 className="text-5xl font-black text-primary border-b-2 border-primary pb-2 px-10 not-italic font-display">{t.nav.name} S.</h5>
-                <div className="space-y-2">
-                  <p className="text-slate-500">{t.certs.certCompleted}</p>
-                  <p className="text-2xl font-bold not-italic font-display uppercase">ADVANCED WEB INFRASTRUCTURE</p>
-                </div>
-                <div className="flex justify-between w-full mt-10 not-italic">
-                  <div className="border-t border-slate-300 pt-2 w-32">
-                    <p className="text-[10px] font-bold text-slate-400 uppercase">{t.certs.certSignature}</p>
+              <div className="w-full max-w-2xl aspect-[1.414/1] bg-bg-dark/40 rounded-2xl border-4 border-primary/20 flex flex-col items-center justify-center text-center p-10 space-y-6 relative overflow-hidden group">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-50 group-hover:scale-110 transition-transform duration-700" />
+                <div className="relative z-10">
+                  <div className="size-24 bg-primary/10 rounded-full flex items-center justify-center mx-auto text-primary mb-6 animate-pulse">
+                    <Verified size={48} />
                   </div>
-                  <div className="size-16 opacity-10">
-                    <Verified size={64} />
-                  </div>
-                  <div className="border-t border-slate-300 pt-2 w-32">
-                    <p className="text-[10px] font-bold text-slate-400 uppercase">{t.certs.certDate}</p>
-                  </div>
+                  <h3 className="text-5xl font-black text-white tracking-tighter uppercase italic leading-none">{t.certs.comingSoon}</h3>
+                  <div className="w-20 h-1.5 bg-primary mx-auto my-4 rounded-full" />
+                  <p className="text-slate-400 font-bold text-sm tracking-[0.2em] uppercase">{lang === 'th' ? 'กำลังปรับปรุงข้อมูลส่วนนี้' : 'Detailed View Under Construction'}</p>
                 </div>
               </div>
             </div>
@@ -656,13 +665,13 @@ export default function App() {
               <div className="space-y-8">
                 <div>
                   <span className="text-primary font-bold tracking-widest text-xs uppercase mb-2 block">{t.certs.info}</span>
-                  <h3 className="text-4xl font-bold">Advanced Web Infrastructure</h3>
+                  <h3 className="text-4xl font-bold">{t.certs.comingSoon}</h3>
                 </div>
                 <div className="space-y-6">
                   {[
-                    { icon: <Building2 size={20} />, label: t.certs.org, value: 'IT PCRU - Phetchabun Rajabhat University' },
-                    { icon: <Calendar size={20} />, label: t.certs.issuedDate, value: 'March 15, 2024' },
-                    { icon: <QrCode size={20} />, label: t.certs.credId, value: 'PCRU-IT-2024-9981-SK', mono: true },
+                    { icon: <Building2 size={20} />, label: t.certs.org, value: '-' },
+                    { icon: <Calendar size={20} />, label: t.certs.issuedDate, value: '-' },
+                    { icon: <QrCode size={20} />, label: t.certs.credId, value: '-', mono: true },
                   ].map((info, i) => (
                     <div key={i} className="flex items-center gap-4">
                       <div className="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
@@ -676,14 +685,14 @@ export default function App() {
                   ))}
                 </div>
                 <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                  This certification validates expertise in server management, cloud deployment strategies, and high-availability architecture for modern web applications.
+                  {t.certs.comingSoon}
                 </p>
               </div>
               <div className="flex gap-4 mt-12">
-                <button className="flex-1 bg-primary text-bg-dark font-bold py-4 rounded-xl flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
-                  <Download size={20} /> {t.certs.downloadPdf}
+                <button className="flex-1 bg-slate-200 dark:bg-bg-dark/50 text-slate-400 font-bold py-4 rounded-xl flex items-center justify-center gap-2 cursor-not-allowed border border-slate-300 dark:border-primary/10">
+                  <Download size={20} /> {t.certs.notAvailable}
                 </button>
-                <button className="bg-slate-200 dark:bg-bg-dark border border-slate-300 dark:border-primary/30 p-4 rounded-xl hover:border-primary transition-colors">
+                <button className="bg-slate-200 dark:bg-bg-dark/50 text-slate-400 border border-slate-300 dark:border-primary/10 p-4 rounded-xl cursor-not-allowed">
                   <Share2 size={20} />
                 </button>
               </div>
@@ -693,51 +702,147 @@ export default function App() {
       </motion.div>
     );
   };
-  const ActivitiesScreen = () => (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-20">
-      <div className="space-y-6 text-center md:text-left">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary mx-auto md:mx-0">
-          <Calendar size={14} />
-          <span className="text-xs font-bold uppercase tracking-widest">{t.activities.subtitle}</span>
-        </div>
-        <h1 className="text-6xl md:text-7xl font-black">{t.activities.title} <span className="text-primary">{t.activities.titleSuffix}</span></h1>
-        <p className="text-slate-600 dark:text-slate-400 text-xl max-w-2xl leading-relaxed">
-          {t.activities.description}
-        </p>
-      </div>
+  const ActivitiesScreen = () => {
+    if (selectedActivity) {
+      return (
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }} 
+          animate={{ opacity: 1, y: 0 }} 
+          className="space-y-12"
+        >
+          <button 
+            onClick={() => setSelectedActivity(null)}
+            className="flex items-center gap-2 text-primary font-bold hover:gap-3 transition-all group"
+          >
+            <ArrowLeft size={20} /> {lang === 'th' ? 'กลับไปยังกิจกรรมทั้งหมด' : 'Back to all activities'}
+          </button>
 
-      <div className="relative max-w-4xl mx-auto md:mx-0">
-        <div className="absolute left-[19px] top-4 bottom-4 w-[2px] bg-primary/20" />
-        <div className="space-y-16">
-          {ACTIVITIES.map((activity) => (
-            <div key={activity.id} className="relative pl-12 group">
-              <div className="absolute left-0 top-1 size-10 rounded-full bg-primary flex items-center justify-center z-10 shadow-xl shadow-primary/30 group-hover:scale-110 transition-transform">
-                {activity.icon === 'trophy' ? <Trophy size={20} className="text-bg-dark" /> : 
-                 activity.icon === 'school' ? <School size={20} className="text-bg-dark" /> :
-                 activity.icon === 'groups' ? <Users size={20} className="text-bg-dark" /> :
-                 <Mic2 size={20} className="text-bg-dark" />}
+          <div className="flex flex-col lg:flex-row gap-12">
+            <div className="lg:w-2/3 space-y-8">
+              <div className="aspect-video rounded-3xl overflow-hidden border border-primary/20 shadow-2xl">
+                <img 
+                  src={selectedActivity.image} 
+                  alt={lang === 'th' ? selectedActivity.titleTh || selectedActivity.title : selectedActivity.title} 
+                  className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
               </div>
-              <div className="flex flex-col md:flex-row gap-8 bg-white dark:bg-primary/5 p-8 rounded-2xl border border-primary/10 hover:border-primary/40 transition-all shadow-sm">
-                <div className="w-full md:w-64 h-40 rounded-xl overflow-hidden shrink-0 border border-primary/10">
-                  <img src={activity.image} alt={lang === 'th' ? activity.titleTh || activity.title : activity.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" referrerPolicy="no-referrer" />
+              
+              <div className="space-y-6">
+                <div className="flex flex-wrap items-center gap-4">
+                  <span className="px-4 py-1.5 rounded-full bg-primary text-bg-dark text-xs font-bold uppercase tracking-widest">
+                    {selectedActivity.type}
+                  </span>
+                  <span className="flex items-center gap-2 text-slate-500 font-medium">
+                    <Calendar size={18} /> {lang === 'th' ? selectedActivity.dateTh || selectedActivity.date : selectedActivity.date}
+                  </span>
                 </div>
-                <div className="space-y-4">
-                  <div className="flex flex-wrap items-center gap-3">
-                    <span className="text-xs font-bold uppercase text-primary tracking-widest">{lang === 'th' ? activity.dateTh || activity.date : activity.date}</span>
-                    <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${
-                      activity.type === 'NATIONAL' ? 'bg-primary text-bg-dark' : 'bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
-                    }`}>
-                      {activity.type}
-                    </span>
-                  </div>
-                  <h3 className="text-2xl font-bold">{lang === 'th' ? activity.titleTh || activity.title : activity.title}</h3>
-                  <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{lang === 'th' ? activity.descriptionTh || activity.description : activity.description}</p>
+                
+                <h1 className="text-5xl font-black">{lang === 'th' ? selectedActivity.titleTh || selectedActivity.title : selectedActivity.title}</h1>
+                
+                <div className="prose prose-slate dark:prose-invert max-w-none">
+                  <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed whitespace-pre-line">
+                    {lang === 'th' ? selectedActivity.descriptionTh || selectedActivity.description : selectedActivity.description}
+                  </p>
                 </div>
               </div>
             </div>
-          ))}
+
+            <div className="lg:w-1/3 space-y-8">
+              <div className="bg-white dark:bg-primary/5 p-8 rounded-3xl border border-primary/10 space-y-6 sticky top-24">
+                <h3 className="text-xl font-bold border-b border-primary/10 pb-4">{lang === 'th' ? 'ข้อมูลกิจกรรม' : 'Activity Info'}</h3>
+                
+                <div className="space-y-4">
+                  <div className="flex items-center gap-4">
+                    <div className="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                      <Trophy size={20} />
+                    </div>
+                    <div>
+                      <p className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">{lang === 'th' ? 'ประเภท' : 'Type'}</p>
+                      <p className="font-medium">{selectedActivity.type}</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center gap-4">
+                    <div className="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                      <Calendar size={20} />
+                    </div>
+                    <div>
+                      <p className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">{lang === 'th' ? 'วันที่' : 'Date'}</p>
+                      <p className="font-medium">{lang === 'th' ? selectedActivity.dateTh || selectedActivity.date : selectedActivity.date}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-6">
+                  <button 
+                    onClick={() => setSelectedActivity(null)}
+                    className="w-full py-4 bg-primary text-bg-dark font-bold rounded-xl hover:opacity-90 transition-opacity"
+                  >
+                    {lang === 'th' ? 'ปิดหน้านี้' : 'Close Details'}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      );
+    }
+
+    return (
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-20">
+        <div className="space-y-6 text-center md:text-left">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary mx-auto md:mx-0">
+            <Calendar size={14} />
+            <span className="text-xs font-bold uppercase tracking-widest">{t.activities.subtitle}</span>
+          </div>
+          <h1 className="text-6xl md:text-7xl font-black">{t.activities.title} <span className="text-primary">{t.activities.titleSuffix}</span></h1>
+          <p className="text-slate-600 dark:text-slate-400 text-xl max-w-2xl leading-relaxed">
+            {t.activities.description}
+          </p>
         </div>
-      </div>
+
+        <div className="relative max-w-4xl mx-auto md:mx-0">
+          <div className="absolute left-[19px] top-4 bottom-4 w-[2px] bg-primary/20" />
+          <div className="space-y-16">
+            {ACTIVITIES.map((activity) => (
+              <div 
+                key={activity.id} 
+                className="relative pl-12 group cursor-pointer"
+                onClick={() => setSelectedActivity(activity)}
+              >
+                <div className="absolute left-0 top-1 size-10 rounded-full bg-primary flex items-center justify-center z-10 shadow-xl shadow-primary/30 group-hover:scale-110 transition-transform">
+                  {activity.icon === 'trophy' ? <Trophy size={20} className="text-bg-dark" /> : 
+                   activity.icon === 'school' ? <School size={20} className="text-bg-dark" /> :
+                   activity.icon === 'groups' ? <Users size={20} className="text-bg-dark" /> :
+                   activity.icon === 'science' ? <Terminal size={20} className="text-bg-dark" /> :
+                   activity.icon === 'hardware' ? <Code size={20} className="text-bg-dark" /> :
+                   <Mic2 size={20} className="text-bg-dark" />}
+                </div>
+                <div className="flex flex-col md:flex-row gap-8 bg-white dark:bg-primary/5 p-8 rounded-2xl border border-primary/10 hover:border-primary/40 transition-all shadow-sm group-hover:shadow-xl group-hover:shadow-primary/5">
+                  <div className="w-full md:w-64 h-40 rounded-xl overflow-hidden shrink-0 border border-primary/10">
+                    <img src={activity.image} alt={lang === 'th' ? activity.titleTh || activity.title : activity.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" referrerPolicy="no-referrer" />
+                  </div>
+                  <div className="space-y-4">
+                    <div className="flex flex-wrap items-center gap-3">
+                      <span className="text-xs font-bold uppercase text-primary tracking-widest">{lang === 'th' ? activity.dateTh || activity.date : activity.date}</span>
+                      <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${
+                        activity.type === 'NATIONAL' ? 'bg-primary text-bg-dark' : 'bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
+                      }`}>
+                        {activity.type}
+                      </span>
+                    </div>
+                    <h3 className="text-2xl font-bold group-hover:text-primary transition-colors">{lang === 'th' ? activity.titleTh || activity.title : activity.title}</h3>
+                    <p className="text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2">{lang === 'th' ? activity.descriptionTh || activity.description : activity.description}</p>
+                    <div className="flex items-center gap-2 text-primary font-bold text-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                      {lang === 'th' ? 'ดูรายละเอียด' : 'View Details'} <ArrowRight size={16} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
 
       <div className="space-y-12">
         <div className="flex items-center justify-between">
@@ -746,11 +851,27 @@ export default function App() {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {[
-            { title: lang === 'th' ? 'การทำงานร่วมกันในแล็บ' : 'Lab Collaboration', desc: lang === 'th' ? 'เซสชันการเขียนโค้ดกับเพื่อนที่แล็บ PCRU' : 'Peer coding session at PCRU Lab', img: 'https://placehold.co/800x600?text=Coming+Soon' },
-            { title: lang === 'th' ? 'Tech Summit 2023' : 'Tech Summit 2023', desc: lang === 'th' ? 'การประชุมเทคโนโลยีระดับภูมิภาคประจำปี' : 'Annual Regional Technology Conference', img: 'https://placehold.co/800x600?text=Coming+Soon' },
-            { title: lang === 'th' ? 'การเขียนโค้ดยามดึก' : 'Late Night Coding', desc: lang === 'th' ? 'การพัฒนาโปรเจกต์โอเพ่นซอร์ส' : 'Developing open-source projects', img: 'https://placehold.co/800x600?text=Coming+Soon' },
+            { 
+              title: lang === 'th' ? 'โครงการพัฒนาผู้นำนักศึกษาด้านบุคลิกภาพ' : 'Student Leader Personality Development Project', 
+              desc: lang === 'th' ? 'การอบรมพัฒนาทักษะความเป็นผู้นำและบุคลิกภาพ' : 'Leadership and personality development training', 
+              img: '/images/formyself.png' 
+            },
+            { 
+              title: lang === 'th' ? 'กิจกรรม "รับน้อง รักพี่" คณะวิทยาศาสตร์และเทคโนโลยี ประจำปี 2568' : '"Welcome Freshmen" Science and Technology 2025', 
+              desc: lang === 'th' ? 'กิจกรรมสร้างความสัมพันธ์ระหว่างรุ่นพี่และรุ่นน้อง' : 'Building relationships between seniors and freshmen', 
+              img: '/images/luvSci.jpg' 
+            },
+            { 
+              title: lang === 'th' ? 'กิจกรรมปีใหม่คณะวิทยาศาสตร์และเทคโนโลยี ประจำปี 2569' : 'New Year Activity Science and Technology 2026', 
+              desc: lang === 'th' ? 'งานเฉลิมฉลองปีใหม่ของคณะวิทยาศาสตร์และเทคโนโลยี' : 'New Year celebration for the Faculty of Science and Technology', 
+              img: '/images/HNYSCI.png' 
+            },
           ].map((item, i) => (
-            <div key={i} className="group cursor-pointer space-y-4">
+            <div 
+              key={i} 
+              className="group cursor-pointer space-y-4"
+              onClick={() => setExpandedGalleryImage(item.img)}
+            >
               <div className="relative overflow-hidden rounded-2xl aspect-[4/3] border border-primary/10">
                 <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 flex items-center justify-center">
                   <Search size={32} className="text-white" />
@@ -765,6 +886,45 @@ export default function App() {
           ))}
         </div>
       </div>
+
+      {/* Gallery Lightbox */}
+      <AnimatePresence>
+        {expandedGalleryImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-bg-dark/95 backdrop-blur-sm p-4 md:p-10"
+            onClick={() => setExpandedGalleryImage(null)}
+          >
+            <motion.button
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              className="absolute top-6 right-6 size-12 rounded-full bg-primary text-bg-dark flex items-center justify-center hover:scale-110 transition-transform z-[110]"
+              onClick={(e) => {
+                e.stopPropagation();
+                setExpandedGalleryImage(null);
+              }}
+            >
+              <X size={24} />
+            </motion.button>
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="relative max-w-5xl w-full aspect-video rounded-3xl overflow-hidden shadow-2xl border border-primary/20"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img 
+                src={expandedGalleryImage} 
+                className="w-full h-full object-contain bg-bg-dark" 
+                alt="Expanded Gallery"
+                referrerPolicy="no-referrer"
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <div className="bg-primary rounded-3xl p-12 flex flex-col md:flex-row items-center justify-between gap-8">
         <div className="text-center md:text-left space-y-2">
@@ -787,7 +947,8 @@ export default function App() {
         </div>
       </div>
     </motion.div>
-  );
+    );
+  };
 
 
   const AboutScreen = () => (
@@ -817,13 +978,56 @@ export default function App() {
         <div className="flex-1">
           <div className="aspect-[3/4] rounded-3xl overflow-hidden border border-primary/20 relative">
             <img 
-              src="https://api.dicebear.com/7.x/avataaars/svg?seed=Jirakit&backgroundColor=ff6321" 
+              src="/images/jirakit_Leader.png" 
               alt="Jirakit" 
               className="w-full h-full object-cover"
               referrerPolicy="no-referrer"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-bg-dark/80 to-transparent" />
           </div>
+        </div>
+      </div>
+
+      {/* Skills Section */}
+      <div className="space-y-12">
+        <div className="text-center space-y-4">
+          <h2 className="text-5xl font-black">{t.about.skillsTitle}</h2>
+          <div className="w-24 h-2 bg-primary mx-auto rounded-full" />
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {SKILLS.map((category, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: idx * 0.1 }}
+              viewport={{ once: true }}
+              className="bg-white dark:bg-bg-dark/40 border border-slate-200 dark:border-primary/10 p-8 rounded-3xl space-y-6 hover:border-primary/30 transition-colors group"
+            >
+              <div className="flex items-center gap-4">
+                <div className="p-3 bg-primary/10 rounded-2xl text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                  {category.categoryKey === 'ide' && <Terminal size={24} />}
+                  {category.categoryKey === 'language' && <Code size={24} />}
+                  {category.categoryKey === 'database' && <Server size={24} />}
+                  {category.categoryKey === 'tool' && <Cpu size={24} />}
+                </div>
+                <h3 className="text-xl font-bold">
+                  {t.about.categories[category.categoryKey as keyof typeof t.about.categories]}
+                </h3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {category.items.map((skill, sIdx) => (
+                  <span 
+                    key={sIdx}
+                    className="px-4 py-2 bg-slate-100 dark:bg-slate-800 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-400 border border-transparent hover:border-primary/20 hover:text-primary transition-all"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </motion.div>

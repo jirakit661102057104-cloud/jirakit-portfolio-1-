@@ -77,12 +77,14 @@ export const translations = {
       issuedDate: 'Issued Date',
       credId: 'Credential ID',
       downloadPdf: 'Download PDF',
+      comingSoon: 'Coming Soon',
+      notAvailable: 'Not Available',
     },
     activities: {
       subtitle: 'My Journey',
       title: 'Activity',
       titleSuffix: 'Timeline',
-      description: 'A chronological log of my professional growth, technical hackathons, and community workshops at IT PCRU.',
+      description: 'A record of my learning journey and potential development, from my first steps to the present at IT PCRU, through hands-on projects, competitions, and community knowledge sharing.',
       gallery: 'Activity',
       gallerySuffix: 'Gallery',
       ctaTitle: 'Interested in working together?',
@@ -98,6 +100,13 @@ export const translations = {
       gpa: 'Current GPA',
       yearValue: '3rd Year',
       yearLabel: 'IT Student',
+      skillsTitle: 'Technical Skills',
+      categories: {
+        ide: 'IDE',
+        language: 'Languages',
+        database: 'Databases',
+        tool: 'Tools'
+      }
     },
     contact: {
       title: 'Get In',
@@ -197,12 +206,14 @@ export const translations = {
       issuedDate: 'วันที่ออก',
       credId: 'รหัสอ้างอิง',
       downloadPdf: 'ดาวน์โหลด PDF',
+      comingSoon: 'เร็วๆ นี้',
+      notAvailable: 'ไม่สามารถใช้งานได้',
     },
     activities: {
       subtitle: 'การเดินทางของฉัน',
       title: 'ไทม์ไลน์',
       titleSuffix: 'กิจกรรม',
-      description: 'บันทึกการเติบโตทางวิชาชีพ การแข่งขันแฮกกาธอน และเวิร์กช็อปชุมชนที่ IT PCRU ตามลำดับเวลา',
+      description: 'บันทึกเส้นทางการเรียนรู้และการพัฒนาศักยภาพของผม ตั้งแต่ก้าวแรกจนถึงปัจจุบันที่ IT PCRU ผ่านการลงมือทำโปรเจกต์จริง การแข่งขัน และการแบ่งปันความรู้ในชุมชน',
       gallery: 'แกลเลอรี',
       gallerySuffix: 'กิจกรรม',
       ctaTitle: 'สนใจร่วมงานกันไหม?',
@@ -218,6 +229,13 @@ export const translations = {
       gpa: 'เกรดเฉลี่ยปัจจุบัน',
       yearValue: 'ชั้นปีที่ 3',
       yearLabel: 'นักศึกษาไอที',
+      skillsTitle: 'ทักษะทางเทคนิค',
+      categories: {
+        ide: 'IDE',
+        language: 'ภาษา',
+        database: 'ฐานข้อมูล',
+        tool: 'เครื่องมือ'
+      }
     },
     contact: {
       title: 'ติดต่อ',
